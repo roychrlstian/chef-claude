@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { GoogleGenAI } from "@google/genai";
+import ReactMarkdown from 'react-markdown';
 
 export default function Add() {
     const [myIngredients, setMyIngredients] = useState([]);
@@ -15,10 +16,10 @@ export default function Add() {
         const userMessage = `Here are my ingredients:\n${myIngredients.join("\n")}\n\nPlease suggest a recipe.`;
         const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
-            contents: [
-                { role: "user", parts: [{ text: SYSTEM_PROMPT }] },
-                { role: "user", parts: [{ text: userMessage }] }
-            ]
+            contents: userMessage,
+            config: {
+                systemInstruction: SYSTEM_PROMPT
+            }
         });
         setRecipe(response.text);
     }
@@ -37,7 +38,7 @@ export default function Add() {
             <button type="submit" className="buttonAdd">+ Add ingredient</button>
         </form>
 
-        <ul>
+        <ul className="ingredients-list">
             {ingredients}
         </ul>
 
@@ -50,11 +51,11 @@ export default function Add() {
                 <button onClick={getRecipe}>Get a recipe</button>
             </div>
         }
-
+    
         {recipe && 
-            <section>
-                <h2>Your Recipe</h2>
-                <div dangerouslySetInnerHTML={{ __html: recipe }} />
+            <section className="suggested-recipe-container">
+                <h2>Chef Claude Recommends:</h2>
+                <ReactMarkdown>{recipe}</ReactMarkdown>
             </section>
         }
     </main>

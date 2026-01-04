@@ -26,6 +26,13 @@ h1 {
     font-weight: 450;
 }
 
+.ingredients-list {
+    list-style-type: disc;
+    max-width: 600px;
+    margin-top: 1rem;
+    font-size: 1.125rem;
+}
+
 .add-container {
     display: flex;
     flex-direction: row;
@@ -47,13 +54,16 @@ h1 {
     font-size: 1.125rem;
     font-weight: 500;
     line-height: 24px;
-    padding-bottom: 0;
+    padding-bottom: 0.05rem;
+    margin-bottom: 0.05rem;
 }
 
 .get-recipe-container p {
     color: #6B7280;
     font-size: 0.875rem;
     line-height: 20px;
+    padding-top: 0;
+    margin-top: 0;
 }
 
 .get-recipe-container button {
@@ -99,4 +109,16 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.suggested-recipe-container {
+    line-height: 28px;
+    font-size: 1.125rem;
+    font-weight: 400;
+    max-width: 650px;
+    margin-top: 1rem;
+}
+
+.suggested-recipe-container ul li, .suggested-recipe-container ol li {
+    margin-bottom: 8px;
 }
